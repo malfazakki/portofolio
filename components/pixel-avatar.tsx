@@ -1,0 +1,66 @@
+export default function PixelAvatar() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-card">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="pixelated"
+        style={{ imageRendering: "pixelated" }}
+      >
+        {/* Background */}
+        <rect width="64" height="64" fill="#1a1a1a" />
+
+        {/* Hair */}
+        <rect x="16" y="8" width="32" height="4" fill="#222222" />
+        <rect x="12" y="12" width="40" height="4" fill="#222222" />
+        <rect x="12" y="16" width="40" height="4" fill="#222222" />
+        <rect x="12" y="20" width="8" height="4" fill="#222222" />
+        <rect x="44" y="20" width="8" height="4" fill="#222222" />
+        <rect x="12" y="24" width="4" height="4" fill="#222222" />
+        <rect x="48" y="24" width="4" height="4" fill="#222222" />
+
+        {/* Face */}
+        <rect x="20" y="20" width="24" height="4" fill="#FFD7B0" />
+        <rect x="16" y="24" width="32" height="12" fill="#FFD7B0" />
+        <rect x="20" y="36" width="24" height="4" fill="#FFD7B0" />
+
+        {/* Eyes */}
+        <rect x="20" y="24" width="8" height="4" fill="#FFFFFF" />
+        <rect x="36" y="24" width="8" height="4" fill="#FFFFFF" />
+        <rect x="24" y="24" width="4" height="4" fill="#222222" />
+        <rect x="40" y="24" width="4" height="4" fill="#222222" />
+
+        {/* Glasses */}
+        <rect x="18" y="22" width="12" height="2" fill="#444444" />
+        <rect x="34" y="22" width="12" height="2" fill="#444444" />
+        <rect x="30" y="22" width="4" height="2" fill="#444444" />
+
+        {/* Mouth */}
+        <rect x="24" y="32" width="16" height="2" fill="#444444" />
+
+        {/* Shirt */}
+        <rect x="20" y="40" width="24" height="8" fill="#50fa7b" />
+        <rect x="16" y="44" width="4" height="8" fill="#50fa7b" />
+        <rect x="44" y="44" width="4" height="8" fill="#50fa7b" />
+        <rect x="20" y="48" width="24" height="8" fill="#50fa7b" />
+
+        {/* Code Symbol on Shirt */}
+        <rect x="28" y="44" width="8" height="2" fill="#222222" />
+        <rect x="26" y="46" width="2" height="2" fill="#222222" />
+        <rect x="36" y="46" width="2" height="2" fill="#222222" />
+        <rect x="28" y="48" width="8" height="2" fill="#222222" />
+
+        {/* Headphones */}
+        <rect x="8" y="16" width="4" height="8" fill="#bd93f9" />
+        <rect x="52" y="16" width="4" height="8" fill="#bd93f9" />
+        <rect x="12" y="12" width="4" height="4" fill="#bd93f9" />
+        <rect x="48" y="12" width="4" height="4" fill="#bd93f9" />
+        <rect x="12" y="24" width="4" height="4" fill="#bd93f9" />
+        <rect x="48" y="24" width="4" height="4" fill="#bd93f9" />
+      </svg>
+    </div>
+  )
+}
