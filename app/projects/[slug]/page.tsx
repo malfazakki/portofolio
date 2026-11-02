@@ -16,13 +16,17 @@ interface ProjectDetailPageProps {
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { slug } = await params;
 
-  const result = await db
-    .select()
-    .from(projects)
-    .where(eq(projects.slug, slug))
-    .limit(1);
-
-  const project = result[0];
+  let project: (typeof projects.$inferSelect) | undefined;
+  try {
+    const result = await db
+      .select()
+      .from(projects)
+      .where(eq(projects.slug, slug))
+      .limit(1);
+    project = result[0];
+  } catch (error) {
+    console.error("Failed to query project detail:", error);
+  }
 
   if (!project) {
     notFound();

@@ -14,16 +14,23 @@ import { asc, eq } from "drizzle-orm"
 export const revalidate = 60
 
 export default async function Home() {
-  const allExperiences = await db
-    .select()
-    .from(experiences)
-    .orderBy(asc(experiences.orderIndex))
+  let allExperiences: (typeof experiences.$inferSelect)[] = [];
+  let allProjects: (typeof projects.$inferSelect)[] = [];
 
-  const allProjects = await db
-    .select()
-    .from(projects)
-    .where(eq(projects.featured, true))
-    .orderBy(asc(projects.orderIndex))
+  try {
+    allExperiences = await db
+      .select()
+      .from(experiences)
+      .orderBy(asc(experiences.orderIndex));
+
+    allProjects = await db
+      .select()
+      .from(projects)
+      .where(eq(projects.featured, true))
+      .orderBy(asc(projects.orderIndex));
+  } catch (error) {
+    console.error("Warning: Failed to fetch from database during render:", error);
+  }
 
   return (
     <main className="min-h-screen pb-8">
