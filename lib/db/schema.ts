@@ -7,7 +7,7 @@ export const projects = sqliteTable("projects", {
   slug: text("slug").notNull().unique(),
   description: text("description").notNull(),
   content: text("content"), // Optional: Detailed markdown / case study
-  image: text("image").notNull(),
+  image: text("image"), // Nullable: defaults to placeholder if empty
   tags: text("tags").notNull(), // JSON string: ["Next.js", "Tailwind CSS"]
   demoUrl: text("demo_url"),
   repoUrl: text("repo_url"),
