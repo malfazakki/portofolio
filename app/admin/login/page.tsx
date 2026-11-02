@@ -9,7 +9,7 @@ export default function AdminLoginPage() {
   const [state, formAction, isPending] = useActionState(loginAction, null);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-background font-sans">
       <div className="w-full max-w-md border-4 border-primary p-6 md:p-8 bg-card retro-shadow">
         <div className="text-center mb-6">
           <div className="inline-flex p-3 border-2 border-primary mb-3 bg-background">

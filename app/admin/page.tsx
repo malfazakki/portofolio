@@ -1,8 +1,7 @@
 import { db } from "@/lib/db";
 import { projects, experiences } from "@/lib/db/schema";
 import { asc } from "drizzle-orm";
-import ProjectManager from "@/components/admin/project-manager";
-import ExperienceManager from "@/components/admin/experience-manager";
+import AdminTabs from "@/components/admin/admin-tabs";
 import { FolderGit2, Briefcase, Cloud, Database } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -25,8 +24,8 @@ export default async function AdminDashboardPage() {
   );
 
   return (
-    <div className="space-y-10">
-      {/* Overview Cards */}
+    <div className="space-y-8">
+      {/* Overview Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="border-4 border-primary p-4 bg-card retro-shadow">
           <div className="flex items-center justify-between mb-2">
@@ -73,16 +72,8 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
 
-      {/* Projects Section */}
-      <section id="manage-projects" className="pt-2">
-        <ProjectManager initialProjects={allProjects} />
-      </section>
-
-      {/* Experiences Section */}
-      <section id="manage-experiences" className="pt-6 border-t-4 border-primary">
-        <ExperienceManager initialExperiences={allExperiences} />
-      </section>
+      {/* Main Tabbed Management Interface */}
+      <AdminTabs projects={allProjects} experiences={allExperiences} />
     </div>
   );
 }
-

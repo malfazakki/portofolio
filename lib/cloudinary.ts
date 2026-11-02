@@ -13,7 +13,10 @@ export interface UploadResult {
 }
 
 /**
- * Upload a Buffer or Base64 data URL to Cloudinary
+ * Upload a Buffer or Base64 data URL to Cloudinary with automatic optimization:
+ * - Max width: 1920px (crop: limit preserves aspect ratio)
+ * - Quality: auto:good (AI visual compression)
+ * - Format: auto (converts to WebP/AVIF depending on browser support)
  */
 export async function uploadToCloudinary(
   fileBuffer: Buffer,
@@ -24,6 +27,11 @@ export async function uploadToCloudinary(
       {
         folder,
         resource_type: "image",
+        transformation: [
+          { width: 1920, height: 1080, crop: "limit" },
+          { quality: "auto:good" },
+          { fetch_format: "auto" },
+        ],
       },
       (error, result) => {
         if (error || !result) {
@@ -55,4 +63,3 @@ export async function deleteFromCloudinary(publicId: string): Promise<boolean> {
 }
 
 export default cloudinary;
-

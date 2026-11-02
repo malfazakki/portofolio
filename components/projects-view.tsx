@@ -110,6 +110,7 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps) {
             return (
               <ProjectCard
                 key={p.id}
+                slug={p.slug}
                 title={p.title}
                 description={p.description}
                 image={p.image}
