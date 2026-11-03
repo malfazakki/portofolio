@@ -35,8 +35,41 @@ export default async function Home() {
     );
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "M Al Fatih Muzakki",
+    url: "https://malfazakki.vercel.app",
+    jobTitle: "Fullstack Web Developer",
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Dumbways Indonesia",
+    },
+    knowsAbout: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Go (Golang)",
+      "NestJS",
+      "PostgreSQL",
+      "Redis",
+      "WebSockets",
+      "Tailwind CSS",
+    ],
+    sameAs: [
+      "https://github.com/malfazakki",
+      "https://id.linkedin.com/in/muhammad-al-fatih-muzakki",
+    ],
+  };
+
   return (
     <main className="min-h-screen pb-8">
+      {/* Schema.org JSON-LD for Search Engines */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="bg-card py-16 md:py-24 border-b-4 border-primary">
         <div className="container px-4 md:px-6 mx-auto">

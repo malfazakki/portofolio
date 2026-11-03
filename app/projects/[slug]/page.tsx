@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
@@ -11,6 +12,54 @@ export const revalidate = 60;
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://malfazakki.vercel.app";
+
+  try {
+    const result = await db
+      .select()
+      .from(projects)
+      .where(eq(projects.slug, slug))
+      .limit(1);
+
+    const project = result[0];
+    if (!project) return { title: "Project Not Found" };
+
+    const images = parseProjectImages(project.image);
+    const ogImage = images.length > 0 ? images[0] : `${baseUrl}/opengraph-image`;
+
+    return {
+      title: project.title,
+      description: project.description,
+      alternates: {
+        canonical: `${baseUrl}/projects/${slug}`,
+      },
+      openGraph: {
+        title: `${project.title} | M Al Fatih Muzakki`,
+        description: project.description,
+        url: `${baseUrl}/projects/${slug}`,
+        images: [
+          {
+            url: ogImage,
+            alt: project.title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: project.title,
+        description: project.description,
+        images: [ogImage],
+      },
+    };
+  } catch {
+    return { title: "Project Showcase" };
+  }
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {

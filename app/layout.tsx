@@ -7,18 +7,79 @@ import CrtPowerOn from "@/components/crt-power-on"
 import RetroScroll from "@/components/retro-scroll"
 import { Press_Start_2P } from "next/font/google"
 
-// Use Press Start 2P font from Google Fonts
 const pixelFont = Press_Start_2P({
   weight: ["400"],
   subsets: ["latin"],
   display: "swap",
 })
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://malfazakki.vercel.app"
+
 export const metadata: Metadata = {
-  title: "M Al Fatih Muzakki | Software Engineer",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "M Al Fatih Muzakki | Fullstack Web Developer",
+    template: "%s | M Al Fatih Muzakki",
+  },
   description:
-    "Retro-styled portfolio showcasing my work as a software engineer specializing in Next.js, Golang, Laravel, Express JS.",
-    generator: 'v0.dev'
+    "Fullstack Web Developer portfolio of M Al Fatih Muzakki specializing in Next.js, Go (Echo), NestJS, React, TypeScript, and PostgreSQL.",
+  applicationName: "M Al Fatih Muzakki Portfolio",
+  keywords: [
+    "M Al Fatih Muzakki",
+    "Fullstack Developer",
+    "Software Engineer",
+    "Next.js Developer Indonesia",
+    "Golang Developer",
+    "NestJS Developer",
+    "React Developer",
+    "TypeScript",
+    "PostgreSQL",
+    "Redis",
+    "OCPP EV Charger",
+    "Web Developer Indonesia",
+  ],
+  authors: [{ name: "M Al Fatih Muzakki", url: "https://github.com/malfazakki" }],
+  creator: "M Al Fatih Muzakki",
+  publisher: "M Al Fatih Muzakki",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: baseUrl,
+    siteName: "M Al Fatih Muzakki Portfolio",
+    title: "M Al Fatih Muzakki | Fullstack Web Developer",
+    description:
+      "Fullstack Web Developer specializing in Next.js, Go (Echo), NestJS, React, TypeScript, and PostgreSQL.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M Al Fatih Muzakki | Fullstack Web Developer",
+    description:
+      "Fullstack Web Developer specializing in Next.js, Go (Echo), NestJS, React, TypeScript, and PostgreSQL.",
+    creator: "@malfazakki",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.svg",
+  },
 }
 
 export default function RootLayout({
